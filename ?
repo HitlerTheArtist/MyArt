@@ -1,0 +1,80 @@
+local player = game:GetService("Players").LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "JumpscareGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(1, 0, 1, 0)
+textLabel.Position = UDim2.new(0, 0, 0, 0)
+textLabel.BackgroundTransparency = 1
+textLabel.TextColor3 = Color3.new(1, 1, 1)
+textLabel.TextStrokeTransparency = 0.5
+textLabel.TextScaled = true
+textLabel.Font = Enum.Font.GothamBlack
+textLabel.TextTransparency = 1
+textLabel.Text = ""
+textLabel.Parent = screenGui
+
+local countdownSound
+
+local function fadeText(text)
+	textLabel.Text = text
+	for i = 1, 0, -0.1 do
+		textLabel.TextTransparency = i
+		wait(0.05)
+	end
+	wait(0.5)
+	for i = 0, 1, 0.1 do
+		textLabel.TextTransparency = i
+		wait(0.05)
+	end
+end
+
+local countdownTexts = {"Jumpscare in", "3", "2", "1"}
+
+for _, text in ipairs(countdownTexts) do
+	if text == "3" then
+		countdownSound = Instance.new("Sound")
+		countdownSound.SoundId = "rbxassetid://8966275754"
+		countdownSound.Volume = 1
+		countdownSound.Looped = true
+		countdownSound.Parent = screenGui
+		countdownSound:Play()
+	end
+	fadeText(text)
+end
+
+if countdownSound then
+	countdownSound:Stop()
+	countdownSound:Destroy()
+end
+
+local jumpscareSound = Instance.new("Sound")
+jumpscareSound.SoundId = "rbxassetid://336771379"
+jumpscareSound.Volume = 1
+jumpscareSound.Parent = screenGui
+jumpscareSound:Play()
+
+local imageLabel = Instance.new("ImageLabel")
+imageLabel.Size = UDim2.new(0, 300, 0, 300)
+imageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+imageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+imageLabel.BackgroundTransparency = 1
+imageLabel.ImageTransparency = 1
+imageLabel.Image = "rbxassetid://104559410973809"
+imageLabel.Parent = screenGui
+
+for i = 1, 0, -0.1 do
+	imageLabel.ImageTransparency = i
+	wait(0.05)
+end
+
+wait(5)
+
+for i = 0, 1, 0.1 do
+	imageLabel.ImageTransparency = i
+	wait(0.05)
+end
