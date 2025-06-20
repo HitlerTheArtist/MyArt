@@ -180,9 +180,9 @@ playButton.MouseButton1Click:Connect(function()
         currentSound:Destroy()
     end
     
-    statusLabel.Text = "Loading audio...[Wait]"
+    statusLabel.Text = "Loading audio... [Wait]"
     statusLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    audioNameLabel.Text = "Fetching audio name...[Are you sure this was right?]"
+    audioNameLabel.Text = "Fetching audio name... [Are you sure this was right?]"
     
     playButton.TextSize = 16
     task.wait(0.1)
@@ -204,7 +204,7 @@ playButton.MouseButton1Click:Connect(function()
     currentSound = sound
     
     sound.Ended:Connect(function()
-        statusLabel.Text = "Audio finished"
+        statusLabel.Text = "[Audio finished]"
         statusLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     end)
 end)
